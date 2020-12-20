@@ -16,31 +16,37 @@ export default {
         {
           id: 1,
           file: require("~/assets/slider/slide-1.png"),
-          title: "Title",
+          title: "First Title",
           text: "Lorum ipsum",
         },
         {
           id: 2,
           file: require("~/assets/slider/slide-2.png"),
-          title: "Title",
+          title: "Second Title",
           text: "Lorum ipsum",
         },
         {
           id: 3,
           file: require("~/assets/slider/slide-3.png"),
-          title: "Title",
+          title: "Third Title",
           text: "Lorum ipsum",
         },
         {
           id: 4,
           file: require("~/assets/slider/slide-2.png"),
-          title: "Title",
+          title: "Fourth Title",
           text: "Lorum ipsum",
         },
         {
           id: 5,
           file: require("~/assets/slider/slide-3.png"),
-          title: "Title",
+          title: "Fifth Title",
+          text: "Lorum ipsum",
+        },
+        {
+          id: 6,
+          file: require("~/assets/slider/slide-3.png"),
+          title: "Sixth Title",
           text: "Lorum ipsum",
         },
       ],
@@ -51,8 +57,10 @@ export default {
     // bind bg image and emmit hover event upward from
   },
   methods: {
-    slideTarget(value) {
-      console.log(value); // someValue
+    slideTarget(file) {
+      console.log(file);
+      document.querySelector(".main").style.backgroundImage =
+        "url(" + file + ")";
     },
   },
 };
@@ -62,8 +70,10 @@ export default {
 .main {
   margin: 0 auto;
   height: 100vh;
-  background: url("~assets/Background.jpg");
+  background: url("~assets/Background.jpg") no-repeat center center;
+  background-size: cover;
   display: flex;
+  transition: all 2s linear;
 }
 
 .container {

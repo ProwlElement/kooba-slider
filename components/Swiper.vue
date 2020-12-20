@@ -5,7 +5,7 @@
         class="swiper-slide"
         :key="image.id"
         v-for="image in images"
-        @mouseover="$emit('onHoverSlide')"
+        @mouseover="onHoverSlide(image.file)"
       >
         <img class="swiper-slide-image" :src="image.file" />
         <div class="flex">
@@ -25,17 +25,21 @@ export default {
       swiperOption: {
         slidesPerView: 3,
         spaceBetween: 20,
-        autoplay: true,
+        loop: true,
       },
     };
   },
   mounted() {
-    console.log("Current Swiper instance object", this.mySwiper);
-    // this.mySwiper.slideTo(0, 1000, true);
+    // console.log("Current Swiper instance object", this.mySwiper);
+    //loop over images
+    let trigger = setInterval(this.nextSlide, 5000);
   },
   methods: {
-    onHoverSlide(event) {
-      this.$emit("slideHover", "test");
+    onHoverSlide(file) {
+      this.$emit("slideHover", file);
+    },
+    nextSlide() {
+      this.mySwiper.slideNext(1000, false);
     },
   },
 };

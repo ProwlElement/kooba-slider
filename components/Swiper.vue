@@ -1,51 +1,57 @@
 <template>
-  <div v-swiper:mySwiper="swiperOption">
+  <div class="swiper-container" v-swiper:mySwiper="swiperOption">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" :key="image" v-for="image in images">
-        <img :src="image" />
+      <div
+        class="swiper-slide"
+        :key="image.id"
+        v-for="image in images"
+        @mouseover="$emit('onHoverSlide')"
+      >
+        <img class="swiper-slide-image" :src="image.file" />
+        <div class="flex">
+          <h2>{{ image.title }}</h2>
+          <p>{{ image.text }}</p>
+        </div>
       </div>
-    </div>
-    <!-- If we need navigation buttons -->
-    <div class="swiper-nav relative mb-20 mt-8">
-      <div
-        @click="mySwiper.slidePrev()"
-        class="swiper-button-prev bg-purple rounded-full p-6"
-      ></div>
-      <div
-        @click="mySwiper.slideNext()"
-        class="swiper-button-next bg-purple rounded-full p-6"
-      ></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["images"],
   data() {
     return {
-      images: [ require('~/assets/slider/slide-1.png'), require('~/assets/slider/slide-2.png'), require('~/assets/slider/slide-3.png') ],
       swiperOption: {
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        // ...
+        slidesPerView: 3,
+        spaceBetween: 20,
+        autoplay: true,
       },
     };
   },
   mounted() {
     console.log("Current Swiper instance object", this.mySwiper);
-    this.mySwiper.slideTo(0, 1000, false);
+    // this.mySwiper.slideTo(0, 1000, true);
+  },
+  methods: {
+    onHoverSlide(event) {
+      this.$emit("slideHover", "test");
+    },
   },
 };
 </script>
 
 
 <style scoped>
-.swiper-nav {
-  width: 150px;
+.swiper-container {
+  width: 100%;
+  height: auto;
 }
-.swiper-nav > div::after {
-  transform: scale(0.5);
+.swiper-slide {
+  color: #fff;
+}
+
+.swiper-slide-image {
+  width: 100%;
 }
 </style>

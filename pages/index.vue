@@ -1,52 +1,79 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <HomeText/>
-      <Swiper />
+  <main class="main">
+    <Header />
+    <div class="container">
+      <HomeText />
+      <Swiper :images="images" @slideHover="slideTarget" />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      images: [
+        {
+          id: 1,
+          file: require("~/assets/slider/slide-1.png"),
+          title: "Title",
+          text: "Lorum ipsum",
+        },
+        {
+          id: 2,
+          file: require("~/assets/slider/slide-2.png"),
+          title: "Title",
+          text: "Lorum ipsum",
+        },
+        {
+          id: 3,
+          file: require("~/assets/slider/slide-3.png"),
+          title: "Title",
+          text: "Lorum ipsum",
+        },
+        {
+          id: 4,
+          file: require("~/assets/slider/slide-2.png"),
+          title: "Title",
+          text: "Lorum ipsum",
+        },
+        {
+          id: 5,
+          file: require("~/assets/slider/slide-3.png"),
+          title: "Title",
+          text: "Lorum ipsum",
+        },
+      ],
+    };
+  },
+  mounted() {
+    console.log("");
+    // bind bg image and emmit hover event upward from
+  },
+  methods: {
+    slideTarget(value) {
+      console.log(value); // someValue
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
+.main {
+  margin: 0 auto;
+  height: 100vh;
+  background: url("~assets/Background.jpg");
+  display: flex;
+}
+
 .container {
   margin: 0 auto;
   height: 100vh;
-  background: url('~assets/Background.jpg');
-  background-color: pink;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: pink; */
 }
 </style>

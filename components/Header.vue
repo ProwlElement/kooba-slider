@@ -9,7 +9,17 @@ export default {};
 </script>
 
 <style scoped>
+.header {
+  /* background: blue; */
+}
 .nav {
-  padding: 10px;
+  padding: 100px;
+  padding-right: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav {
+    padding: 10px;
+  }
 }
 </style>

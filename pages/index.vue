@@ -1,9 +1,11 @@
 <template>
   <main class="main">
-    <Header />
     <div class="container">
-      <HomeText />
-      <Swiper :images="images" @slideHover="slideTarget" />
+      <Header />
+      <div class="inner-container">
+        <HomeText />
+        <Swiper :images="images" @slideHover="slideTarget" />
+      </div>
     </div>
   </main>
 </template>
@@ -72,18 +74,34 @@ export default {
   height: 100vh;
   background: url("~assets/Background.jpg") no-repeat center center;
   background-size: cover;
-  display: flex;
-  transition: all 2s linear;
+  transition: all 1s linear;
 }
 
 .container {
   margin: 0 auto;
+  max-width: 80%;
+  display: flex;
+}
+
+.inner-container {
+  position: relative;
+  margin: 0 auto;
   height: 100vh;
-  max-width: 800px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   /* background-color: pink; */
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-flow: column nowrap;
+  }
+
+  .inner-container {
+    max-width: 100%;
+  }
 }
 </style>
